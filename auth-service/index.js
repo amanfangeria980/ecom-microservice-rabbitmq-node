@@ -9,7 +9,7 @@ mongoose
     .connect(
         "mongodb://admin:admin%40123@localhost:27017/auth-service?authSource=admin"
     )
-    .then(() => console.log("✅ DB Connected"))
+    .then(() => console.log("✅ Auth Service DB Connected"))
     .catch((err) => console.error("❌ Some error occurred:", err));
 
 app.use(express.json());

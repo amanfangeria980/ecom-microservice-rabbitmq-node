@@ -1,6 +1,7 @@
 const express = require("express");
 const amqp = require("amqplib");
-
+const Product = require("./Product");
+const isAuthenticated = require("../isAuthenticated");
 const app = express();
 const PORT = process.env.PORT_ONE || 8080;
 const mongoose = require("mongoose");
@@ -27,9 +28,21 @@ async function connectToQueue() {
         console.error("❌ RabbitMQ connection error:", err);
     }
 }
-
 connectToQueue();
 
+// Creat a new product
+app.post("/product/create", isAuthenticated, async (req, res) => {
+    const { name, description, price } = req.body;
+    console.log(name, description, price);
+    const newProduct = new Product({
+        name,
+        description,
+        price,
+    });
+    newProduct.save();
+    return res.send(newProduct);
+});
+// Buy a product
 app.listen(PORT, () => {
     console.log(`PRODUCT_SERVICE is running on ${PORT}`);
 });
