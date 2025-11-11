@@ -1,6 +1,6 @@
 # ecom-microservice-rabbitmq-node
 
-## This repo contains code related to the implementation of rabbitMQ with an example project
+### This repo contains code related to the implementation of rabbitMQ with an example project
 
 ## Architecture
 
