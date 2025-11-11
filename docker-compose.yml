@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: my-mongodb
+    ports:
+      # Map the internal container port 27017 to the host port 27017
+      - "27017:27017"
+    environment:
+      # Optional: Set a root user/password for authentication (highly recommended)
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin@123
+    volumes:
+      # Optional: Persist data outside the container so it's not lost on stop/restart
+      # This creates a named volume for the database data
+      - mongo-data:/data/db
+
+# Define the named volume
+volumes:
+  mongo-data:
